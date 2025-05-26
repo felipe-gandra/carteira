@@ -23,7 +23,7 @@ main{
   background-color: #d7e7ff;
   color: #1F2A40;
   text-align: center; 
-  height: 150vh;
+  height: auto;
   padding-top: 20px;
   h2{
     font-size:30px;
@@ -156,7 +156,7 @@ li{
 
 
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 700px) {
   h1{
     font-size: 30px;
   }
