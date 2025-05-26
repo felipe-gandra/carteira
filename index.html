@@ -3,50 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minha carteira</title>
+  <title>💸 Minha carteira</title>
+  <link rel="stylesheet" href="styles.css">
+  
 </head>
 <body>
   <header>
-    <h1>Minha carteira</h1>
-    <button>Adicionar ativo</button>
-    <button>Remover ativo</button>
-    <button>Simular ativo</button>
+    <h1>Minha carteira de investimentos</h1>
+    <div class="botoesHeader">
+      <button>Adicionar ativo</button>
+      <button>Remover ativo</button>
+      <button>Simular ativo</button>
+    </div>
+
   </header>
   <main>
-    <section>
-      <h2>Gerenciamento de ativos</h2>
-      <div>
-        <h3>Ações</h3>
+    <h2>Gerenciamento de ativos</h2>
+    <section class="conjuntoCards">
+      <div class = "card">
+        <h3 class="tituloCard">Ações</h3>
         <ul>
-          <li>Ativo 1: R$ 1000,00</li>
-          <li>Ativo 2: R$ 500,00</li>
-          <li>Ativo 3: R$ 2000,00</li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+        </ul>
+        <button class="botaoVisualizar">Visualizar distribuição</button>
+      </div>
+      <div class="card">
+        <h3 class="tituloCard">Criptomoedas</h3>
+        <ul>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <button class="botaoVisualizar">Visualizar distribuição</button>
         </ul>
       </div>
-      <div>
-        <h3>Criptomoedas</h3>
+      <div class="card">
+        <h3 class="tituloCard">Fundos de investimento</h3>
         <ul>
-          <li>Cripto 1: R$ 3000,00</li>
-          <li>Cripto 2: R$ 1500,00</li>
-          <li>Cripto 3: R$ 2500,00</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Fundos de investimento</h3>
-        <ul>
-          <li>Fundo 1: R$ 4000,00</li>
-          <li>Fundo 2: R$ 3500,00</li>
-          <li>Fundo 3: R$ 4500,00</li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
+          <button class="botaoVisualizar">Visualizar distribuição</button>
         </ul>
       </div>
     </section>
-    <section>
-      <h2>Viusalização</h2>
+    <h2>Resumo financeiro</h2>
+    <section class="secaoResumo">
+      
+      <div class="cardMaior">
+        <div class="blocoTextoResumo">
+          <h3>Estatísticas</h3>
+          <p>Total investido: R$ 20.000,00</p>
+          <p>Montante atual: R$ 30.000,00%</p>
+          <p>Valorização: 50%</p>
+          <p>Ativo principal: Ações</p>
+        </div>
+        <div class="blocoImagemResumo">
+          <h3>Distribuição dos ativos</h3>
+          <img src="assets/dummyGrafico.png" alt="Gráfico de pizza genérico">
+        </div>
+      </div>
     </section>
+    <section class="secaoGraficoEscolhido">
+      <h2>Visualização gráfica</h2>
+    </section>
+
+    </main>
     <footer>
-      <p>Link github</p>
+      <a href="https://github.com/felipe-gandra/carteira" target="_blank"><img src="assets/iconeGithub.svg" alt="Github do projeto"></a>
     </footer>
-  </main>
+
   
 </body>
 </html>
