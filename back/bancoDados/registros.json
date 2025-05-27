@@ -1,14 +1,26 @@
 [
   {
     "email": "felipegmoreira@usp.br",
-    "senha": "1234"
+    "senha": "1234",
+    "acoes": {
+      "PETR4": {
+        "quantidade": 10,
+        "preco": 30.50
+      },
+      "VALE3": {
+        "quantidade": 5,
+        "preco": 80.00
+      }
+    }
   },
   {
     "email": "felipe@gmail.com",
-    "senha": "4321"
+    "senha": "4321",
+    "acoes": {}
   },
   {
     "email": "felipe@usp.br",
-    "senha": "123"
+    "senha": "123",
+    "acoes" : {}
   }
 ]

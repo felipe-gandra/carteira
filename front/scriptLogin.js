@@ -1,6 +1,6 @@
 var mostrarLogin = false; // Variável para controlar a exibição do formulário de login
-var usuarioLogado = false;
-var usuarioAtual = null; // Variável para armazenar o usuário logado
+export var usuarioLogado = false;
+export var usuarioAtual = null; // Variável para armazenar o usuário logado
 
 function toggleLogin() {
   mostrarLogin = !mostrarLogin; // Inverte o estado da variável
