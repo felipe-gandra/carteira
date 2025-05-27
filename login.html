@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Carteira</title>
+  <link rel="stylesheet" href="stylesLogin.css">
+</head>
+<body>
+  
+  <main>
+    <h1 style="margin-top: 3%">Faça login ou registre-se!</h1>
+    <section class="cardLogin">
+      <div class="card" style="margin-top: 8%;">
+        <h2>Login</h2>
+        <form class = formulario>
+          <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <button type="submit" onclick="login(event)">Entrar</button>
+          
+        </form>
+          <button>Ainda não tenho cadastro</button>
+      </div>
+    </section>
+  </main>
+
+  <footer >
+    <a href="https://github.com/felipe-gandra/carteira" target="_blank"><img src="assets/iconeGithub.svg" alt="Github do projeto"></a>
+  </footer>
+
+  <script src="scriptLogin.js"></script>
+
+</body>
+</html>

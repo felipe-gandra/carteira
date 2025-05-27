@@ -1,0 +1,122 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button{
+  margin-top: 20px;
+}
+
+.formulario{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  button:hover{
+    background-color: #0056b3;
+  }
+
+}
+
+h1{
+  font-size: 36px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h2{
+  font-size: 24px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.card{
+  background-color: #FFFFFF;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 480px;
+  height: 400px;
+
+}
+
+button{
+  width: 100%;
+  height: 40px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: #0056b3;
+}
+
+body{
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+main{
+  background-color: #d7e7ff;
+  color: #1F2A40;
+  text-align: center; 
+  height: auto;
+  padding-top: 10px;
+  min-height: calc(100vh - 100px);
+}
+
+
+.cardLogin{
+display: flex;
+justify-content: center;
+  height: auto;
+}
+
+footer{
+  background-color: #516579;
+  color : #FFFFFF;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .card{
+    width: 90%;
+    height: auto;
+  }
+  
+  h2{
+    font-size: 22px;
+  }
+  
+  button{
+    width: 100%;
+  }
+
+  h1{
+    font-size: 24px;
+  }
+  
+}
