@@ -47,6 +47,11 @@ main{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  ul{
+    overflow-y: auto;
+    max-height: 150px;
+  }
 }
 
 .conjuntoCards{

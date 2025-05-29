@@ -67,7 +67,6 @@ function editarAtivo(codigo, ativos, tipo){
 
 
 function deslogar(){
-  console.log("rjfiowej");
   localStorage.removeItem("usuarioEmail");
   window.location.href = "login.html";
 }
@@ -80,5 +79,6 @@ async function main(){
   const ativos = await procuraAtivos(usuarioLogado);
   atualizaAtivos(ativos);
 }
+
 
 main();

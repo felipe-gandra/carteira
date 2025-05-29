@@ -15,6 +15,24 @@
           "quantidade": 5,
           "precoMedio": 80,
           "precoAtual": 85
+        },
+                "NVDC": {
+          "nome" : "NVDC",
+          "quantidade": 10,
+          "precoMedio": 30.5,
+          "precoAtual": 32
+        },
+                "DDMF": {
+          "nome" : "DDMF",
+          "quantidade": 10,
+          "precoMedio": 30.5,
+          "precoAtual": 32
+        },
+                "TESLA": {
+          "nome" : "TESLA",
+          "quantidade": 10,
+          "precoMedio": 30.5,
+          "precoAtual": 32
         }
       },
       "cripto": {
