@@ -2,30 +2,34 @@
   {
     "email": "felipegmoreira@usp.br",
     "senha": "1234",
-    "ativos":{
+    "ativos": {
       "acoes": {
         "PETR4": {
+          "nome" : "PETR4",
           "quantidade": 10,
           "precoMedio": 30.5,
           "precoAtual": 32
         },
         "VALE3": {
+          "nome" : "VALE3",
           "quantidade": 5,
           "precoMedio": 80,
           "precoAtual": 85
         }
       },
-      "cripto":{
-        "BTC" : {
-          "quantidade" : 10,
-          "precoMedio" : 1000.0,
-          "precoAtual" : 4000.0
+      "cripto": {
+        "BTC": {
+          "nome":"BTC",
+          "quantidade": 10,
+          "precoMedio": 1000,
+          "precoAtual": 4000
         }
       },
-      "fundos":{
-        "Fundo 1":{
-          "valorInvestido" : 5000,
-          "valorAtual" : 5600
+      "fundos": {
+        "Fundo 1": {
+          "nome": "Fundo 1",
+          "valorInvestido": 5000,
+          "valorAtual": 5600
         }
       }
     }
@@ -46,6 +50,11 @@
   },
   {
     "email": "rodrigo@gmail.com",
+    "senha": "123",
+    "acoes": {}
+  },
+  {
+    "email": "allan@gmail.com",
     "senha": "123",
     "acoes": {}
   }

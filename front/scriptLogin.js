@@ -136,7 +136,8 @@ async function cadastrarUsuario(email, senha){
 
 window.onload = function() {
   toggleLogin();
-
+  localStorage.removeItem("usuarioEmail");
   window.toggleLogin = toggleLogin;
   window.envioFormulario = envioFormulario;
 }
+

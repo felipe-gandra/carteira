@@ -44,7 +44,9 @@ main{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 480px;
   height: 300px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .conjuntoCards{
@@ -165,12 +167,28 @@ button:hover{
 
 li{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.iconeSaida{
+  img{
+  width: 20px;
+  height: auto;
+  margin-bottom: -5px;
+  padding: 0,0,0,0;
+  }
+  background-color: rgb(255, 67, 67);
+  color:black
+}
+
+.iconeSaida:hover{
+  background-color: rgb(146, 25, 25);
 }
 
 
-
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 1000px) {
   h1{
     font-size: 30px;
   }
@@ -237,3 +255,4 @@ li{
   }
   
 }
+

@@ -9,11 +9,13 @@
 </head>
 <body>
   <header>
+
     <h1>Minha carteira de investimentos</h1>
     <div class="botoesHeader">
       <button>Adicionar ativo</button>
       <button>Remover ativo</button>
       <button>Simular ativo</button>
+      <button class="iconeSaida" onclick="deslogar()">Sair  <img src="assets/exit.png"></button>
     </div>
 
   </header>
@@ -39,42 +41,38 @@
     <h2>Gerenciamento de ativos</h2>
     <section class="conjuntoCards">
       <div class = "card">
-        <h3 class="tituloCard">Ações</h3>
-        <ul>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-        </ul>
+        <div>
+          <h3 class="tituloCard">Ações</h3>
+          <ul id="listaAcoes">
+          </ul>
+        </div>
         <button class="botaoVisualizar">Visualizar distribuição</button>
       </div>
       <div class="card">
-        <h3 class="tituloCard">Criptomoedas</h3>
-        <ul>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <button class="botaoVisualizar">Visualizar distribuição</button>
-        </ul>
+        <div>
+          <h3 class="tituloCard">Criptomoedas</h3>
+          <ul id="listaCriptos">
+          </ul>
+        </div>
+        <button class="botaoVisualizar">Visualizar distribuição</button>
       </div>
       <div class="card">
-        <h3 class="tituloCard">Fundos de investimento</h3>
-        <ul>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <li><p>Ativo 1: R$ 1000,00 </p><button class="botaoEditar"><img src="assets/iconeEditar.svg" alt="Editar"></button></li>
-          <button class="botaoVisualizar">Visualizar distribuição</button>
-        </ul>
+        <div>
+          <h3 class="tituloCard">Fundos de investimento</h3>
+          <ul id="listaFundos">
+          </ul>
+        </div>
+        <button class="botaoVisualizar">Visualizar distribuição</button>
       </div>
     </section>
     
     <h2>Visualização gráfica</h2>
     <section class="conjuntoCards">
       <div class="card">
-        <h3 class="tituloCard">Distribuição de Ações</h3>
-        <img src="assets/dummyGrafico.png" alt="Gráfico de evolução genérico">
+        <div>
+          <h3 class="tituloCard">Distribuição de Ações</h3>
+          <img src="assets/dummyGrafico.png" alt="Gráfico de evolução genérico">
+        </div>
       </div>
     </section>
 
@@ -83,6 +81,6 @@
       <a href="https://github.com/felipe-gandra/carteira" target="_blank"><img src="assets/iconeGithub.svg" alt="Github do projeto"></a>
     </footer>
 
-  <script type="module" src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
