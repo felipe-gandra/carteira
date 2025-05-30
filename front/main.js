@@ -1,5 +1,7 @@
+/*
+  - Acessa o banco de dados e retorna o array de usuários
+*/
 async function getUsuarios(){
-
   try{
     const resposta = await fetch("http://localhost:3000/usuarios");
     const usuarios = await resposta.json()
@@ -12,6 +14,9 @@ async function getUsuarios(){
   }
 }
 
+/*
+  - Retorna os ativos de um determinado email, caso não encontre retorna null
+*/
 async function procuraAtivos(email){
   const usuarios = await getUsuarios();
   
@@ -23,7 +28,11 @@ async function procuraAtivos(email){
   return null;
 }
 
-function atualizaAtivos(ativosAtuais){
+
+/*
+  - Renderiza os ativos do usuário atual no html dentro dos cards
+*/
+function renderizarAtivos(ativosAtuais){
   const acoes = ativosAtuais.acoes;
   const criptos = ativosAtuais.cripto;
   const fundos = ativosAtuais.fundos;
@@ -44,16 +53,28 @@ function atualizaAtivos(ativosAtuais){
       editarAtivo(codigo, acoes, 0);
     });
 
-    listaAcoes.appendChild(li)
+    listaAcoes.appendChild(li);
   }
   for (let codigo in criptos){
     const li = document.createElement("li");
     li.innerHTML = "<p>"+ criptos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + (criptos[codigo].quantidade * criptos[codigo].precoAtual).toFixed(2) +"</p><button class='botaoEditar' id='"+ criptos[codigo].nome +"'><img src='assets/iconeEditar.svg' alt='Editar'></button></li>"
-    listaCriptos.appendChild(li)
+
+    const botao = li.querySelector(".botaoEditar");
+    botao.addEventListener("click", () => {
+    editarAtivo(codigo, criptos, 1);
+    });
+
+    listaCriptos.appendChild(li);
   }
   for (let codigo in fundos){
     const li = document.createElement("li");
     li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + fundos[codigo].valorAtual +"</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='assets/iconeEditar.svg' alt='Editar'></button></li>"
+
+    const botao = li.querySelector(".botaoEditar");
+    botao.addEventListener("click", () => {
+      editarAtivo(codigo, fundos, 2);
+    });
+
     listaFundos.appendChild(li)
   }
 }
@@ -62,6 +83,12 @@ function atualizaAtivos(ativosAtuais){
 function editarAtivo(codigo, ativos, tipo){
   if (tipo === 0){
     alert("tentou editar acao " + ativos[codigo].nome);
+  }
+  else if (tipo == 1){
+    alert("tentou editar a cripto " + ativos[codigo].nome);
+  }
+  else{
+    alert("tentou editar o fundo " + ativos[codigo].nome);
   }
 }
 
@@ -77,7 +104,7 @@ async function main(){
   if (!usuarioLogado || usuarioLogado == null){deslogar(); return;} //se entrou sem estar logado, volta pro login
 
   const ativos = await procuraAtivos(usuarioLogado);
-  atualizaAtivos(ativos);
+  renderizarAtivos(ativos);
 }
 
 

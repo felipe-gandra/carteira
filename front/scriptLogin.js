@@ -115,7 +115,7 @@ async function verificaEmailExistente(email) {
 */
 async function cadastrarUsuario(email, senha){
   try {
-    const novoUsuario = { email, senha, "acoes": {}};
+    const novoUsuario = { email, senha, "ativos" : {"acoes": {} , "cripto": {}, "fundos":{}}};
 
     const options = {
       method: 'POST',

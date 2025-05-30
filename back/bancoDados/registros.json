@@ -5,31 +5,31 @@
     "ativos": {
       "acoes": {
         "PETR4": {
-          "nome" : "PETR4",
+          "nome": "PETR4",
           "quantidade": 10,
           "precoMedio": 30.5,
           "precoAtual": 32
         },
         "VALE3": {
-          "nome" : "VALE3",
+          "nome": "VALE3",
           "quantidade": 5,
           "precoMedio": 80,
           "precoAtual": 85
         },
-                "NVDC": {
-          "nome" : "NVDC",
+        "NVDC": {
+          "nome": "NVDC",
           "quantidade": 10,
           "precoMedio": 30.5,
           "precoAtual": 32
         },
-                "DDMF": {
-          "nome" : "DDMF",
+        "DDMF": {
+          "nome": "DDMF",
           "quantidade": 10,
           "precoMedio": 30.5,
           "precoAtual": 32
         },
-                "TESLA": {
-          "nome" : "TESLA",
+        "TESLA": {
+          "nome": "TESLA",
           "quantidade": 10,
           "precoMedio": 30.5,
           "precoAtual": 32
@@ -37,7 +37,7 @@
       },
       "cripto": {
         "BTC": {
-          "nome":"BTC",
+          "nome": "BTC",
           "quantidade": 10,
           "precoMedio": 1000,
           "precoAtual": 4000
@@ -54,26 +54,11 @@
   },
   {
     "email": "felipe@gmail.com",
-    "senha": "4321",
-    "acoes": {}
-  },
-  {
-    "email": "felipe@usp.br",
-    "senha": "123",
-    "acoes": {}
-  },
-  {
-    "email": "lala@gmail.com",
-    "senha": "123"
-  },
-  {
-    "email": "rodrigo@gmail.com",
-    "senha": "123",
-    "acoes": {}
-  },
-  {
-    "email": "allan@gmail.com",
-    "senha": "123",
-    "acoes": {}
+    "senha": "1234",
+    "ativos": {
+      "acoes": {},
+      "cripto": {},
+      "fundos": {}
+    }
   }
 ]
