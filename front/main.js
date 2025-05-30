@@ -1,6 +1,7 @@
-/*
-  - Acessa o banco de dados e retorna o array de usuários
-*/
+/**
+ * Faz uma requisição de uma lista com os usuários presentes no banco de dados
+ * @returns Lista de usuários caso funcione, ou null em caso de erro
+ */
 async function getUsuarios(){
   try{
     const resposta = await fetch("http://localhost:3000/usuarios");
@@ -14,9 +15,11 @@ async function getUsuarios(){
   }
 }
 
-/*
-  - Retorna os ativos de um determinado email, caso não encontre retorna null
-*/
+/**
+ * Procura os ativos de um determinado email no banco de dados
+ * @param {email com os ativos associados} email 
+ * @returns Lista de ativos caso encontre, ou null
+ */
 async function procuraAtivos(email){
   const usuarios = await getUsuarios();
   
@@ -29,9 +32,10 @@ async function procuraAtivos(email){
 }
 
 
-/*
-  - Renderiza os ativos do usuário atual no html dentro dos cards
-*/
+/**
+ * Renderiza os ativos do usuário atualmente logado index.html dentro dos cards
+ * @param {} ativosAtuais Lista de ativos do usuário logado
+ */
 function renderizarAtivos(ativosAtuais){
   const acoes = ativosAtuais.acoes;
   const criptos = ativosAtuais.cripto;
@@ -79,7 +83,12 @@ function renderizarAtivos(ativosAtuais){
   }
 }
 
-
+/**
+ * 
+ * @param {Código do ativo. Ex: PETR4} codigo 
+ * @param {Lista de ativos de um tipo específico} ativos 
+ * @param {0: Ações, 1: Cripto, 2: Fundos} tipo 
+ */
 function editarAtivo(codigo, ativos, tipo){
   if (tipo === 0){
     alert("tentou editar acao " + ativos[codigo].nome);
@@ -92,7 +101,9 @@ function editarAtivo(codigo, ativos, tipo){
   }
 }
 
-
+/**
+ * Remove o email do usuário logado do localStorage e direciona pro login
+ */
 function deslogar(){
   localStorage.removeItem("usuarioEmail");
   window.location.href = "login.html";

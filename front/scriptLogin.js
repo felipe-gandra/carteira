@@ -1,6 +1,10 @@
 var mostrarLogin = false; // Variável para controlar a exibição do formulário de login
 
-
+/**
+ * Função para controlar o formato do formulário da página de login.
+ * Mostra Login/Registre-se baseado na flag mostrarLogin e permite a troca
+ * de funcionalidade.
+ */
 function toggleLogin() {
   mostrarLogin = !mostrarLogin; // Inverte o estado da variável
   const titulo = document.getElementById("nomeForms");
@@ -19,6 +23,12 @@ function toggleLogin() {
   }
 }
 
+
+/**
+ * Função que lida com o envio do formulário html. Tenta realizar login ou cadastro
+ * baseado na flag mostrarLogin
+ * @param {evento de envio do formulário html} event 
+ */
 function envioFormulario(event){
   if (mostrarLogin) {
     login(event); // Se mostrarLogin for true, chama a função de login
@@ -28,6 +38,10 @@ function envioFormulario(event){
   }
 }
 
+/**
+ * Realiza o login a partir dos dados inseridos no formulário html
+ * @param {evento de envio do formulário html} event 
+ */
 async function login(event) {
   event.preventDefault(); // segura o envio do formulario
 
@@ -42,6 +56,12 @@ async function login(event) {
   }
 }
 
+/**
+ * Verifica se existe um usuário com determinado login e senha no banco de dados. Realiza a validação de login
+ * @param {email a ser verificado} email 
+ * @param {senha a ser verificada} senha 
+ * @returns true se achou, false se não achou
+ */
 async function achouUsuarioCorreto(email, senha) {
   try {
     const resposta = await fetch("http://localhost:3000/usuarios");
@@ -64,14 +84,11 @@ async function achouUsuarioCorreto(email, senha) {
 }
 
 
-/*
-  - Função verifica se o email existe no banco e chama cadastrarUsuario para realizar 
-  um POST no banco
-  - Recebe o evento do formulário como parâmetro.
-  - Se o email já existir, exibe um alert e não prossegue com o cadastro.
-  - Se o email não existir, chama a função cadastrarUsuario para realizar o cadastro.
-  - Exibe um alert de sucesso após o cadastro.
-*/
+/**
+ * Tenta realizar o cadastro dos dados inseridos no formulário html
+ * @param {evento de envio do formulário html} event 
+ * 
+ */
 async function cadastro(event) {
   event.preventDefault();
 
@@ -89,6 +106,11 @@ async function cadastro(event) {
   toggleLogin(); // Atualiza a interface
 }
 
+/**
+ * Verifica se já existe um determinado email no banco de dados
+ * @param {email a ser verificado} email 
+ * @returns true se já exite ou false se não existir
+ */
 async function verificaEmailExistente(email) {
   try {
     const resposta = await fetch("http://localhost:3000/usuarios");
@@ -108,11 +130,11 @@ async function verificaEmailExistente(email) {
 }
 
 
-/*
-  - Função que faz um POST para cadastrar o usuário.
-  - Recebe o email e a senha como parâmetros.
-  - Retorna um alert caso ocorra erro ao acessar o banco
-*/
+/**
+ * Faz um POST no banco de dados com o email e senha cadastrados e sem ativos financeiros
+ * @param {*} email email cadastrado
+ * @param {*} senha senha cadastrado
+ */
 async function cadastrarUsuario(email, senha){
   try {
     const novoUsuario = { email, senha, "ativos" : {"acoes": {} , "cripto": {}, "fundos":{}}};
@@ -134,6 +156,10 @@ async function cadastrarUsuario(email, senha){
   }
 }
 
+
+/**
+ * Ao iniciar a página o localStorage é esvaziado e o formulário é setado para login
+ */
 window.onload = function() {
   toggleLogin();
   localStorage.removeItem("usuarioEmail");
