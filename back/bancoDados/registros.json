@@ -46,8 +46,9 @@
       "fundos": {
         "Fundo 1": {
           "nome": "Fundo 1",
-          "valorInvestido": 5000,
-          "valorAtual": 5600
+          "quantidade": 5,
+          "precoMedio": 5000,
+          "precoAtual": 5600
         }
       }
     }
@@ -66,11 +67,11 @@
     "senha": "Sara",
     "ativos": {
       "acoes": {
-        "PETR4":{
-          "nome":"PETR4",
-          "precoMedio":1000,
-          "precoAtual":950,
-          "quantidade":2
+        "PETR4": {
+          "nome": "PETR4",
+          "precoMedio": 1000,
+          "precoAtual": 950,
+          "quantidade": 2
         }
       },
       "cripto": {},

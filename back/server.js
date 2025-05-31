@@ -45,6 +45,16 @@ app.post('/usuarios', (req, res) => {
   });
 });
 
+
+//rota para cadastrar um ativo no banco de dados
+app.post('/usuarios/addAtivo', (req, res) => {
+  const {email, novoAtivo} = req.body
+  const codigoAtivo = Object.keys(novoAtivo)[0];
+
+  
+  res.send("Funcionou");
+})
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

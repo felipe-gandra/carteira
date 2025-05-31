@@ -26,7 +26,7 @@
         <form>
           <div class="opcoesAtivos">
             <div>
-              <input type="radio" id="acao">
+              <input type="radio" id="acao" checked>
               <label for="acao">Ação</label>
             </div>
             <div>
@@ -41,17 +41,17 @@
 
           <div>
             <label for="nomeAtivo">Código do ativo: </label>
-            <input type="text" id="nomeAtivo" placeholder="Ex: PETR4">
+            <input type="text" id="nomeAtivo" placeholder="Ex: PETR4" required>
           </div>
           <div>
             <label for="valorCompra">Valor do ativo no momento da compra: </label>
-            <input type="number" id="valorCompra" placeholder="Ex: 30.90">
+            <input type="number" id="valorCompra" placeholder="Ex: 30.90" required>
           </div>
           <div>
             <label for="unidadesCompradas">Número de unidades compradas: </label>
-            <input type="number" id="unidadesCompradas" placeholder="Ex: 17 ou 0.0019">
+            <input type="number" id="unidadesCompradas" placeholder="Ex: 17 ou 0.0019" required>
           </div>
-          <button type="submit" class="botaoAddAtivo">Adicionar ativo</button>
+          <button class="botaoAddAtivo" onclick="adicionarAtivo(event)">Adicionar ativo</button>
           
 
         </form>

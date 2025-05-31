@@ -41,8 +41,6 @@ function renderizarAtivos(ativosAtuais){
   const criptos = ativosAtuais.cripto;
   const fundos = ativosAtuais.fundos;
 
-  console.log(acoes);
-
   const listaAcoes = document.getElementById("listaAcoes");
   const listaCriptos = document.getElementById("listaCriptos");
   const listaFundos = document.getElementById("listaFundos");
@@ -72,7 +70,7 @@ function renderizarAtivos(ativosAtuais){
   }
   for (let codigo in fundos){
     const li = document.createElement("li");
-    li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + fundos[codigo].valorAtual +"</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+    li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + (fundos[codigo].quantidade * fundos[codigo].precoAtual).toFixed(2) +"</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -129,11 +127,65 @@ function fecharModalAddAtivo(){
   modal = document.getElementById("conteudoModal").style.display = 'none';
 }
 
+async function adicionarAtivo(event){
+  event.preventDefault();
+
+  var tipo = null;
+  if (document.getElementById("acao")){ var tipo = "acao";}
+  else if (document.getElementById("cripto")){ var tipo = "cripto";}
+  else{ var tipo = "acao";}
+
+  const codigo = document.getElementById("nomeAtivo").value;
+  const valorCompra = document.getElementById("valorCompra").value;
+  const unidadesCompradas = document.getElementById("unidadesCompradas").value;
+
+  //limpa os campos do forms depois de enviado
+  limpaFormulario();
+
+  if (!ativoExiste(codigo) || valorCompra <= 0 || unidadesCompradas <= 0){
+    alert("Dados inválidos!");
+    return;
+  }
+
+  //cria a estrutura do objeto que sera salvo no banco
+  novoAtivo = {[codigo] : {
+    nome : codigo,
+    quantidade : unidadesCompradas,
+    precoMedio : valorCompra,
+    precoAtual : valorCompra
+  }}
+
+  const options = {
+    method:'POST',
+    headers:{
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify({
+      email : localStorage.getItem("usuarioEmail"),
+      novoAtivo: novoAtivo
+    })
+  };
+  
+  const resposta = await fetch("http://localhost:3000/usuarios/addAtivo", options);
+  const resultado = await resposta.text();
+  console.log(resultado);
+}
+
+function limpaFormulario(){
+  document.getElementById("nomeAtivo").value = '';
+  document.getElementById("valorCompra").value = '';
+  document.getElementById("unidadesCompradas").value = '';
+}
+
+function ativoExiste(codigo){
+  return true;
+}
+
 async function main(){
   adicionarListenerModal();
 
   var usuarioLogado = localStorage.getItem("usuarioEmail");
-  console.log(usuarioLogado);
+
   if (!usuarioLogado || usuarioLogado == null){deslogar(); return;} //se entrou sem estar logado, volta pro login
 
   const ativos = await procuraAtivos(usuarioLogado);
