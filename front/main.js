@@ -50,7 +50,7 @@ function renderizarAtivos(ativosAtuais){
   //renderiza os diferentes tipos de ativos
   for (let codigo in acoes){
     const li = document.createElement("li");
-    li.innerHTML = "<p>"+ acoes[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + (acoes[codigo].quantidade * acoes[codigo].precoAtual).toFixed(2) +"</p><button class='botaoEditar' id='"+ acoes[codigo].nome +"'><img src='assets/iconeEditar.svg' alt='Editar'></button></li>"
+    li.innerHTML = "<p>"+ acoes[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + (acoes[codigo].quantidade * acoes[codigo].precoAtual).toFixed(2) +"</p><button class='botaoEditar' id='"+ acoes[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -61,7 +61,7 @@ function renderizarAtivos(ativosAtuais){
   }
   for (let codigo in criptos){
     const li = document.createElement("li");
-    li.innerHTML = "<p>"+ criptos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + (criptos[codigo].quantidade * criptos[codigo].precoAtual).toFixed(2) +"</p><button class='botaoEditar' id='"+ criptos[codigo].nome +"'><img src='assets/iconeEditar.svg' alt='Editar'></button></li>"
+    li.innerHTML = "<p>"+ criptos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + (criptos[codigo].quantidade * criptos[codigo].precoAtual).toFixed(2) +"</p><button class='botaoEditar' id='"+ criptos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -72,7 +72,7 @@ function renderizarAtivos(ativosAtuais){
   }
   for (let codigo in fundos){
     const li = document.createElement("li");
-    li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + fundos[codigo].valorAtual +"</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='assets/iconeEditar.svg' alt='Editar'></button></li>"
+    li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + fundos[codigo].valorAtual +"</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -109,7 +109,29 @@ function deslogar(){
   window.location.href = "login.html";
 }
 
+
+function adicionarListenerModal(){
+  document.getElementById("fundoModal").addEventListener("click", function(event){
+    const modal = document.getElementById("conteudoModal");
+    if (!modal.contains(event.target)){ //se clicar fora do modal, fecha
+      fecharModalAddAtivo();
+    }
+  })
+}
+
+function mostrarModalAddAtivo(){
+  fundo = document.getElementById("fundoModal").style.display = 'block';
+  modal = document.getElementById("conteudoModal").style.display = 'block';
+}
+
+function fecharModalAddAtivo(){
+  fundo = document.getElementById("fundoModal").style.display = 'none';
+  modal = document.getElementById("conteudoModal").style.display = 'none';
+}
+
 async function main(){
+  adicionarListenerModal();
+
   var usuarioLogado = localStorage.getItem("usuarioEmail");
   console.log(usuarioLogado);
   if (!usuarioLogado || usuarioLogado == null){deslogar(); return;} //se entrou sem estar logado, volta pro login
@@ -117,6 +139,5 @@ async function main(){
   const ativos = await procuraAtivos(usuarioLogado);
   renderizarAtivos(ativos);
 }
-
 
 main();

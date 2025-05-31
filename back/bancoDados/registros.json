@@ -60,5 +60,21 @@
       "cripto": {},
       "fundos": {}
     }
+  },
+  {
+    "email": "julias.ssoares07@gmail.com",
+    "senha": "Sara",
+    "ativos": {
+      "acoes": {
+        "PETR4":{
+          "nome":"PETR4",
+          "precoMedio":1000,
+          "precoAtual":950,
+          "quantidade":2
+        }
+      },
+      "cripto": {},
+      "fundos": {}
+    }
   }
 ]

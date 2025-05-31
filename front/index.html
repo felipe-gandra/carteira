@@ -12,7 +12,7 @@
 
     <h1>Minha carteira de investimentos</h1>
     <div class="botoesHeader">
-      <button>Adicionar ativo</button>
+      <button onclick="mostrarModalAddAtivo()">Adicionar ativo</button>
       <button>Remover ativo</button>
       <button>Simular ativo</button>
       <button class="iconeSaida" onclick="deslogar()">Sair  <img src="img/exit.png"></button>
@@ -20,6 +20,43 @@
 
   </header>
   <main>
+    <div id ="fundoModal" class="fundoModal">
+      <div id = "conteudoModal" class="conteudoModal">
+        <h2>Adicionar um ativo</h2>
+        <form>
+          <div class="opcoesAtivos">
+            <div>
+              <input type="radio" id="acao">
+              <label for="acao">Ação</label>
+            </div>
+            <div>
+              <input type="radio" id="cripto">
+              <label for="acao">Criptomoeda</label>
+            </div>
+            <div>
+              <input type="radio" id="fundo">
+              <label for="acao">Fundo de investimento</label>
+            </div>
+          </div>
+
+          <div>
+            <label for="nomeAtivo">Código do ativo: </label>
+            <input type="text" id="nomeAtivo" placeholder="Ex: PETR4">
+          </div>
+          <div>
+            <label for="valorCompra">Valor do ativo no momento da compra: </label>
+            <input type="number" id="valorCompra" placeholder="Ex: 30.90">
+          </div>
+          <div>
+            <label for="unidadesCompradas">Número de unidades compradas: </label>
+            <input type="number" id="unidadesCompradas" placeholder="Ex: 17 ou 0.0019">
+          </div>
+          <button type="submit" class="botaoAddAtivo">Adicionar ativo</button>
+          
+
+        </form>
+      </div>
+    </div>
     <h2>Resumo financeiro</h2>
     <section class="secaoResumo">
       
