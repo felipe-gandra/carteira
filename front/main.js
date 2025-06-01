@@ -131,9 +131,9 @@ async function adicionarAtivo(event){
   event.preventDefault();
 
   var tipo = null;
-  if (document.getElementById("acao")){ var tipo = "acao";}
-  else if (document.getElementById("cripto")){ var tipo = "cripto";}
-  else{ var tipo = "acao";}
+  if (document.getElementById("acao").checked){ var tipo = "acoes";}
+  else if (document.getElementById("cripto").checked){ var tipo = "cripto";}
+  else{ var tipo = "fundos";}
 
   const codigo = document.getElementById("nomeAtivo").value;
   const valorCompra = document.getElementById("valorCompra").value;
@@ -142,10 +142,12 @@ async function adicionarAtivo(event){
   //limpa os campos do forms depois de enviado
   limpaFormulario();
 
-  if (!ativoExiste(codigo) || valorCompra <= 0 || unidadesCompradas <= 0){
+  if (!ativoExiste(codigo) || valorCompra <= 0 || unidadesCompradas <= 0 || !tipo){
     alert("Dados inválidos!");
     return;
   }
+
+  fecharModalAddAtivo();
 
   //cria a estrutura do objeto que sera salvo no banco
   novoAtivo = {[codigo] : {
@@ -155,6 +157,9 @@ async function adicionarAtivo(event){
     precoAtual : valorCompra
   }}
 
+  console.log(novoAtivo);
+  console.log(tipo);
+
   const options = {
     method:'POST',
     headers:{
@@ -162,13 +167,14 @@ async function adicionarAtivo(event){
     },
     body: JSON.stringify({
       email : localStorage.getItem("usuarioEmail"),
-      novoAtivo: novoAtivo
+      novoAtivo: novoAtivo,
+      tipo : tipo
     })
   };
   
   const resposta = await fetch("http://localhost:3000/usuarios/addAtivo", options);
   const resultado = await resposta.text();
-  console.log(resultado);
+  //location.reload();
 }
 
 function limpaFormulario(){

@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const { stringify } = require('querystring');
 
 const app = express();
 const PORT = 3000;
@@ -48,10 +49,32 @@ app.post('/usuarios', (req, res) => {
 
 //rota para cadastrar um ativo no banco de dados
 app.post('/usuarios/addAtivo', (req, res) => {
-  const {email, novoAtivo} = req.body
+  const {email, novoAtivo, tipo} = req.body
   const codigoAtivo = Object.keys(novoAtivo)[0];
+  var usuarioCerto = null;
 
-  
+  fs.readFile(arquivoUsuarios, (err, data) => {
+    let usuarios = JSON.parse(data);
+    for (usuario of usuarios){
+      if (usuario.email == email){
+        usuarioCerto = usuario;
+      }
+    }
+
+    if (!usuario){
+      return res.send("Nao achou usuario (?)"); 
+      //se nao achou ninguem com o email. Nao deveria acontecer mas vai saber
+
+    }
+    usuarioCerto.ativos[tipo][codigoAtivo] = novoAtivo[codigoAtivo];
+
+    fs.writeFile(arquivoUsuarios, JSON.stringify(usuarios, null, 2), (erro) => {
+      if (err){
+        console.log("Erro ao escrever o novo ativo no banco de dados.")
+      }
+    });
+    
+  });
   res.send("Funcionou");
 })
 
