@@ -14,7 +14,7 @@
           "nome": "VALE3",
           "quantidade": 5,
           "precoMedio": 80,
-          "precoAtual": 85
+          "precoAtual": 75
         },
         "NVDC": {
           "nome": "NVDC",
@@ -26,7 +26,7 @@
           "nome": "DDMF",
           "quantidade": 10,
           "precoMedio": 30.5,
-          "precoAtual": 32
+          "precoAtual": 24
         }
       },
       "cripto": {

@@ -48,7 +48,14 @@ function renderizarAtivos(ativosAtuais){
   //renderiza os diferentes tipos de ativos no campo de gerenciamento de ativos
   for (let codigo in acoes){
     const li = document.createElement("li");
-    li.innerHTML = "<p>"+ acoes[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + (acoes[codigo].quantidade * acoes[codigo].precoAtual).toFixed(2) +"</p><button class='botaoEditar' id='"+ acoes[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+    const valorAtual = (acoes[codigo].quantidade * acoes[codigo].precoAtual);
+    const valorCompra = (acoes[codigo].quantidade * acoes[codigo].precoMedio);
+    const variacao = ((valorAtual/valorCompra - 1)*100).toFixed(2);
+    var variacaoString = variacao
+    if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> " + variacao}
+    else if(variacao<0){variacaoString = "<img src='img/diminuindo.png' style='height:18px;margin-right:3px'> " + variacao }
+
+    li.innerHTML = "<p>"+ acoes[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ acoes[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -59,7 +66,14 @@ function renderizarAtivos(ativosAtuais){
   }
   for (let codigo in criptos){
     const li = document.createElement("li");
-    li.innerHTML = "<p>"+ criptos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + (criptos[codigo].quantidade * criptos[codigo].precoAtual).toFixed(2) +"</p><button class='botaoEditar' id='"+ criptos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+    const valorAtual = (criptos[codigo].quantidade * criptos[codigo].precoAtual);
+    const valorCompra = (criptos[codigo].quantidade * criptos[codigo].precoMedio);
+    const variacao = ((valorAtual/valorCompra - 1)*100).toFixed(2);
+    var variacaoString = variacao
+    if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> " + variacao}
+    else if(variacao<0){variacaoString = "<img src='img/diminuindo.png' style='height:18px;margin-right:3px'> " + variacao }
+
+    li.innerHTML = "<p>"+ criptos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ criptos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -70,7 +84,14 @@ function renderizarAtivos(ativosAtuais){
   }
   for (let codigo in fundos){
     const li = document.createElement("li");
-    li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + (fundos[codigo].quantidade * fundos[codigo].precoAtual).toFixed(2) +"</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+    const valorAtual = (fundos[codigo].quantidade * fundos[codigo].precoAtual);
+    const valorCompra  =(fundos[codigo].quantidade * fundos[codigo].precoMedio);
+    const variacao = ((valorAtual/valorCompra - 1)*100).toFixed(2);
+    var variacaoString = variacao
+    if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> " + variacao}
+    else if(variacao<0){variacaoString = "<img src='img/diminuindo.png' style='height:18px;margin-right:3px'> " + variacao }
+
+    li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
