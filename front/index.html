@@ -20,6 +20,7 @@
 
   </header>
   <main>
+    <!-- Modal de adicionar ativo -->
     <div id ="fundoModal" class="fundoModal">
       <div id = "conteudoModal" class="conteudoModal">
         <h2>Adicionar um ativo</h2>
@@ -52,21 +53,44 @@
             <input type="number" id="unidadesCompradas" placeholder="Ex: 17 ou 0.0019" required>
           </div>
           <button class="botaoAddAtivo" onclick="adicionarAtivo(event)">Adicionar ativo</button>
-          
-
         </form>
       </div>
     </div>
+
+    <!-- Modal de Editar ativo já existente -->
+    <div id="fundoModalEditar"  class="fundoModal">
+      <div id="modalEditar" class="conteudoModal">
+        <h2>Editar ativo</h2>
+        <form>
+          <div>
+            <label for="nomeAtivo">Novo valor médio de compra: </label>
+            <input type="number" id="novoValor" placeholder="Ex: 30.50" required>
+          </div>
+          <div>
+            <label for="nomeAtivo">Novo número de unidades (total): </label>
+            <input type="number" id="novoValorUnidades" placeholder="Ex: 50" required>
+          </div>
+          <div class="botoes">
+            <button class="botadoAddAtivo">Confirmar Alterações</button>
+            <button class="botaoRemoverAtivo">Remover Ativo</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+
+    <!-- Corpo principal do site -->
     <h2>Resumo financeiro</h2>
     <section class="secaoResumo">
       
       <div class="cardMaior">
         <div class="blocoTextoResumo">
           <h3>Estatísticas</h3>
-          <p>Total investido: R$ 20.000,00</p>
-          <p>Montante atual: R$ 30.000,00</p>
-          <p>Valorização: 50%</p>
-          <p>Ativo principal: Ações</p>
+          <p id="totalInvestido"></p>
+          <p id="montante"></p>
+          <p id="valorizacao"></p>
+          <p id="principal"></p>
         </div>
         <div class="blocoImagemResumo">
           <h3>Distribuição dos ativos</h3>

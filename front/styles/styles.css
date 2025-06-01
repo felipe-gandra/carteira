@@ -227,6 +227,10 @@ form {
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
+  input{
+    font-size: 16px;
+  }
+  height: 100%;
 }
 
 form > div {
@@ -260,6 +264,26 @@ form > div {
 
 .botaoAddAtivo:hover {
   background-color: #45a049;
+}
+
+.botaoRemoverAtivo{
+  font-size: 20px;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: rgb(255, 67, 67);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.botaoRemoverAtivo:hober{
+  background-color: rgb(146, 25, 25);
+}
+
+.botoes{
+  margin-top: 16%;
 }
 
 
@@ -327,6 +351,14 @@ form > div {
     align-items: center;
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .conteudoModal{
+    height: 500px;
+  }
+
+  .botoes{
+    margin-top: 170px;
   }
   
 }

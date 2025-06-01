@@ -45,7 +45,7 @@ function renderizarAtivos(ativosAtuais){
   const listaCriptos = document.getElementById("listaCriptos");
   const listaFundos = document.getElementById("listaFundos");
 
-  //renderiza os diferentes tipos de ativos
+  //renderiza os diferentes tipos de ativos no campo de gerenciamento de ativos
   for (let codigo in acoes){
     const li = document.createElement("li");
     li.innerHTML = "<p>"+ acoes[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + (acoes[codigo].quantidade * acoes[codigo].precoAtual).toFixed(2) +"</p><button class='botaoEditar' id='"+ acoes[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
@@ -79,7 +79,51 @@ function renderizarAtivos(ativosAtuais){
 
     listaFundos.appendChild(li)
   }
+
+  renderizaEstatisticas(ativosAtuais);
 }
+
+function renderizaEstatisticas(ativosAtuais){
+  const acoes = ativosAtuais.acoes;
+  const criptos = ativosAtuais.cripto;
+  const fundos = ativosAtuais.fundos;
+
+  const listaAcoes = document.getElementById("listaAcoes");
+  const listaCriptos = document.getElementById("listaCriptos");
+  const listaFundos = document.getElementById("listaFundos");
+
+  investido = [0, 0, 0];
+  montante = [0,0,0]
+
+
+  for (let codigo in acoes){
+    investido[0]+=acoes[codigo].precoMedio * acoes[codigo].quantidade;
+    montante[0]+=acoes[codigo].precoAtual * acoes[codigo].quantidade;
+  }
+  for (let codigo in criptos){
+    investido[1]+=criptos[codigo].precoMedio * criptos[codigo].quantidade;
+    montante[1]+=criptos[codigo].precoAtual * criptos[codigo].quantidade;
+  }
+  for (let codigo in fundos){
+    investido[2]+=fundos[codigo].precoMedio * fundos[codigo].quantidade;
+    montante[2]+=fundos[codigo].precoAtual * fundos[codigo].quantidade;
+  }
+
+  const totalInvestido = investido[0] + investido[1] + investido[2];
+  const totalmontante = montante[0] + montante[1] + montante[2];
+  const valorizacao = ((totalmontante/totalInvestido) - 1)*100;
+  var ativoPrincipal = null;
+  if (montante[0] >= montante[1] && montante[0] >= montante[2]){ativoPrincipal = "Ações";}
+  else if (montante[1] >= montante[2]){ativoPrincipal="Criptomoedas";}
+  else{ativoPrincipal = "Fundos de investimento";}
+
+  document.getElementById("totalInvestido").innerText = "Total investido:  R$ " + totalInvestido.toFixed(2);
+  document.getElementById("montante").innerText = "Montante atual:  R$ " + totalmontante.toFixed(2);
+  document.getElementById("valorizacao").innerText = "Valorização:  " + valorizacao.toFixed(2) + "%"
+  document.getElementById("principal").innerText = "Principal ativo da carteira: " + ativoPrincipal;
+  
+}
+
 
 /**
  * 
@@ -88,15 +132,11 @@ function renderizarAtivos(ativosAtuais){
  * @param {0: Ações, 1: Cripto, 2: Fundos} tipo 
  */
 function editarAtivo(codigo, ativos, tipo){
-  if (tipo === 0){
-    alert("tentou editar acao " + ativos[codigo].nome);
-  }
-  else if (tipo == 1){
-    alert("tentou editar a cripto " + ativos[codigo].nome);
-  }
-  else{
-    alert("tentou editar o fundo " + ativos[codigo].nome);
-  }
+  // Ativa o modal
+  document.getElementById("fundoModalEditar").style.display = 'block';
+  document.getElementById("modalEditar").style.display = 'block';
+
+
 }
 
 /**
@@ -115,16 +155,23 @@ function adicionarListenerModal(){
       fecharModalAddAtivo();
     }
   })
+  document.getElementById("fundoModalEditar").addEventListener("click", function(event){
+    const modal = document.getElementById("modalEditar");
+    if (!modal.contains(event.target)){ //se clicar fora do modal, fecha
+      document.getElementById("fundoModalEditar").style.display = 'none';
+      document.getElementById("modalEditar").style.display = 'none';
+    }
+  })
 }
 
 function mostrarModalAddAtivo(){
-  fundo = document.getElementById("fundoModal").style.display = 'block';
-  modal = document.getElementById("conteudoModal").style.display = 'block';
+  document.getElementById("fundoModal").style.display = 'block';
+  document.getElementById("conteudoModal").style.display = 'block';
 }
 
 function fecharModalAddAtivo(){
-  fundo = document.getElementById("fundoModal").style.display = 'none';
-  modal = document.getElementById("conteudoModal").style.display = 'none';
+  document.getElementById("fundoModal").style.display = 'none';
+  document.getElementById("conteudoModal").style.display = 'none';
 }
 
 async function adicionarAtivo(event){
@@ -174,7 +221,7 @@ async function adicionarAtivo(event){
   
   const resposta = await fetch("http://localhost:3000/usuarios/addAtivo", options);
   const resultado = await resposta.text();
-  //location.reload();
+  location.reload();
 }
 
 function limpaFormulario(){
