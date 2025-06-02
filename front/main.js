@@ -55,7 +55,7 @@ function renderizarAtivos(ativosAtuais){
     if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> +" + variacao}
     else if(variacao<0){variacaoString = "<img src='img/diminuindo.png' style='height:18px;margin-right:3px'> " + variacao }
 
-    li.innerHTML = "<p>"+ acoes[codigo].nome +":&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ acoes[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+    li.innerHTML = "<p>"+ acoes[codigo].nome +":&nbsp; US$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ acoes[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -73,7 +73,7 @@ function renderizarAtivos(ativosAtuais){
     if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> +" + variacao}
     else if(variacao<0){variacaoString = "<img src='img/diminuindo.png' style='height:18px;margin-right:3px'> " + variacao }
 
-    li.innerHTML = "<p>"+ criptos[codigo].nome +":&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ criptos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+    li.innerHTML = "<p>"+ criptos[codigo].nome +":&nbsp; US$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ criptos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -91,7 +91,7 @@ function renderizarAtivos(ativosAtuais){
     if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> +" + variacao}
     else if(variacao<0){variacaoString = "<img src='img/diminuindo.png' style='height:18px;margin-right:3px'> " + variacao }
 
-    li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+    li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp; US$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -138,10 +138,10 @@ function renderizaEstatisticas(ativosAtuais){
   else if (montante[1] >= montante[2]){ativoPrincipal="Criptomoedas";}
   else{ativoPrincipal = "Fundos de investimento";}
 
-  document.getElementById("totalInvestido").innerText = "Total investido:  R$ " + totalInvestido.toFixed(2);
-  document.getElementById("montante").innerText = "Montante atual:  R$ " + totalmontante.toFixed(2);
+  document.getElementById("totalInvestido").innerText = "Total investido:  US$ " + totalInvestido.toFixed(2);
+  document.getElementById("montante").innerText = "Montante atual:  US$ " + totalmontante.toFixed(2);
   document.getElementById("valorizacao").innerText = "Valorização:  " + valorizacao.toFixed(2) + "%"
-  document.getElementById("lucro").innerText = "Lucro/Prejuízo:  R$ " + (totalmontante - totalInvestido).toFixed(2);
+  document.getElementById("lucro").innerText = "Lucro/Prejuízo:  US$ " + (totalmontante - totalInvestido).toFixed(2);
   document.getElementById("principal").innerText = "Tipo de ativo predominante: " + ativoPrincipal;
   
 }
@@ -337,6 +337,24 @@ function ativoExiste(codigo){
   return true;
 }
 
+async function atualizaAtivos(){
+  const options = {
+    method:'POST',
+    headers:{
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify({
+      email : localStorage.getItem("usuarioEmail"),
+    })
+  }
+  //coloquei para somente atualizar do usuario logado. ISso deve ajudar no processamento e evita 
+  // sobrecarregar a api, que já é limitada por ser gratuita
+  const resultado = await fetch("http://localhost:3000/usuarios/atualizarAtivos", options)
+
+  
+
+}
+
 async function main(){
   adicionarListenerModal();
 
@@ -345,6 +363,7 @@ async function main(){
   if (!usuarioLogado || usuarioLogado == null){deslogar(); return;} //se entrou sem estar logado, volta pro login
 
   const ativos = await procuraAtivos(usuarioLogado);
+  atualizaAtivos();
   renderizarAtivos(ativos);
 }
 

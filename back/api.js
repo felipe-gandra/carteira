@@ -3,12 +3,33 @@
 Funções relacioandas a api de ações
 
 */
+//as criptomoedas tem um codigo diferente do real na api
+const criptoMapa = {
+    'BTC': 'BINANCE:BTCUSDT',
+    'ETH': 'BINANCE:ETHUSDT',
+    'ADA': 'BINANCE:ADAUSDT',
+    'DOT': 'BINANCE:DOTUSDT',
+    'MATIC': 'BINANCE:MATICUSDT',
+    'SOL': 'BINANCE:SOLUSDT',
+    'AVAX': 'BINANCE:AVAXUSDT',
+    'LINK': 'BINANCE:LINKUSDT',
+    'UNI': 'BINANCE:UNIUSDT',
+    'DOGE': 'BINANCE:DOGEUSDT'
+};
+
+
+
 const fs = require("fs");
 const link = 'https://finnhub.io/api/v1';
-const config = JSON.parse(fs.readFileSync("../front/config.json", "utf-8"));
+const config = JSON.parse(fs.readFileSync("front/config.json", "utf-8"));
 
 
 async function buscarPreco(codigo){
+
+  if (codigo in criptoMapa){
+    codigo = criptoMapa[codigo];
+  }
+
   //monta o link pra requisição de api
   const endereco = link + "/quote?symbol=" + codigo + "&token=" + config.api_keys.finnhub_api;
   
@@ -34,3 +55,4 @@ async function acaoExiste(codigo) {
 
 
 module.exports = {buscarPreco, acaoExiste};
+

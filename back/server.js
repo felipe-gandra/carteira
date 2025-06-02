@@ -1,8 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { stringify } = require('querystring');
-
+const {acaoExiste, buscarPreco} = require("./api")
 const app = express();
 const PORT = 3000;
 
@@ -89,7 +88,6 @@ app.post('/usuarios/addAtivo', (req, res) => {
 //rota para editar/remover ativo
 app.post('/usuarios/editarAtivo', (req, res) => {
   const {email, alteracoes, tipo, remocao} = req.body;
-  console.log(alteracoes);
   
   fs.readFile(arquivoUsuarios, (err, data) => {
     if (err) {
@@ -134,3 +132,37 @@ app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
 
+app.post('/usuarios/atualizarAtivos', (req, res) =>{
+  const {email} = req.body;
+
+  const promessas = []
+
+  fs.readFile(arquivoUsuarios, (err, data) =>{
+    const usuarios = JSON.parse(data);
+
+    for (let usuario of usuarios){
+      if (usuario.email == email){
+        for (let tipo in usuario.ativos){
+          for (let ativo in usuario.ativos[tipo]){
+
+            const promessa = buscarPreco(usuario.ativos[tipo][ativo].nome).then(preco => {
+              usuario.ativos[tipo][ativo].precoAtual = preco;
+              
+            })
+            promessas.push(promessa);
+          }
+        }
+        break;
+      }
+      else{
+        continue; //continua procurando o email certo
+      }
+    }
+    
+    Promise.all(promessas).then(() => {
+      //agora escreve de volta os usuarios corretos
+      fs.writeFile(arquivoUsuarios, JSON.stringify(usuarios, null, 2), erro =>{
+      })
+    })
+  })
+});

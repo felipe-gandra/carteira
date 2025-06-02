@@ -4,34 +4,34 @@
     "senha": "1234",
     "ativos": {
       "acoes": {
-        "TESTE": {
-          "nome": "TESTE",
+        "AAPL": {
+          "nome": "AAPL",
           "quantidade": "233",
           "precoMedio": "123",
-          "precoAtual": "123"
+          "precoAtual": 201.7
         },
-        "TESTE2": {
-          "nome": "TESTE2",
+        "NVDA": {
+          "nome": "NVDA",
           "quantidade": "233",
           "precoMedio": "33",
-          "precoAtual": "33"
+          "precoAtual": 137.38
         },
-        "TESTE4": {
-          "nome": "TESTE4",
-          "quantidade": 1,
-          "precoMedio": 1,
-          "precoAtual": 1
+        "INTC": {
+          "nome": "INTC",
+          "quantidade": 3,
+          "precoMedio": 2,
+          "precoAtual": 19.74
         }
       },
-      "cripto": {},
-      "fundos": {
-        "TESTE": {
-          "nome": "TESTE",
-          "quantidade": "133",
-          "precoMedio": "23",
-          "precoAtual": "23"
+      "cripto": {
+        "BTC": {
+          "nome": "BTC",
+          "quantidade": "2",
+          "precoMedio": "2000",
+          "precoAtual": 105915.97
         }
-      }
+      },
+      "fundos": {}
     }
   },
   {
