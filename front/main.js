@@ -147,19 +147,68 @@ function renderizaEstatisticas(ativosAtuais){
 }
 
 
-/**
- * 
- * @param {Código do ativo. Ex: PETR4} codigo 
- * @param {Lista de ativos de um tipo específico} ativos 
- * @param {0: Ações, 1: Cripto, 2: Fundos} tipo 
- */
-function editarAtivo(codigo, ativos, tipo){
-  // Ativa o modal
+
+
+function editarAtivo(codigo, ativos, ctipo){
+  ativoEmEdicao = codigo;
+  tipoEmEdicao = ctipo;
+
+  // Mostra o modal
   document.getElementById("fundoModalEditar").style.display = 'block';
   document.getElementById("modalEditar").style.display = 'block';
   document.getElementById("tituloEditar").innerText= "Editar ativo: " + codigo;
 
+
+  //cuida dos botões
+  document.getElementById("botaoEditarAtivo").onclick = () => {
+    if (ativoEmEdicao != null && tipoEmEdicao != null) {
+      realizarEdicao(ativoEmEdicao, tipoEmEdicao, false);
+    }
+  };
+
+  document.getElementById("botaoRemoverAtivo").onclick = () => {
+    if (ativoEmEdicao != null && tipoEmEdicao != null) {
+      realizarEdicao(ativoEmEdicao, tipoEmEdicao, true);
+    }
+  };
+
 }
+
+async function realizarEdicao(codigo, ctipo, remocao){
+  const novoValor = document.getElementById("novoValor").value;
+  const novoUnidades = document.getElementById("novoValorUnidades").value;
+
+  //faz uma validacao pra ver se o usuario realmente inseriu alguma coisa
+  if ((!novoValor || !novoUnidades) && !remocao){return;}
+
+  var tipo = null;
+  if (ctipo == 0){tipo = "acoes";}
+  else if (ctipo == 1){tipo = "cripto";}
+  else{tipo = "fundos";}
+
+  const alteracoes = {
+    nome : codigo,
+    quantidade : novoUnidades,
+    precoMedio : novoValor,
+    precoAtual : novoValor
+  }
+
+  const options = {
+    method:'POST',
+    headers:{
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify({
+      email : localStorage.getItem("usuarioEmail"),
+      alteracoes : alteracoes,
+      tipo : tipo,
+      remocao : remocao
+    })
+  }
+
+  const resultado = await fetch("http://localhost:3000/usuarios/editarAtivo", options)
+}
+
 
 /**
  * Remove o email do usuário logado do localStorage e direciona pro login
@@ -184,6 +233,7 @@ function adicionarListenerModal(){
       document.getElementById("modalEditar").style.display = 'none';
     }
   })
+
 }
 
 function mostrarModalAddAtivo(){

@@ -80,6 +80,42 @@ app.post('/usuarios/addAtivo', (req, res) => {
   res.send("Funcionou");
 })
 
+
+app.post('/usuarios/editarAtivo', (req, res) => {
+  const {email, alteracoes, tipo, remocao} = req.body;
+  console.log(alteracoes);
+  fs.readFile(arquivoUsuarios, (err, data) => {
+    let usuarios = JSON.parse(data);
+    var usuarioCerto = null;
+
+    for (usuario of usuarios){
+      if (usuario.email == email){
+        usuarioCerto = usuario;
+      }
+    }
+    if (!usuario){res.send("Erro ao achar ususario para editar ativo"); return;} //nao deveria acontecer
+
+    //remoção
+    if (remocao){
+      delete usuarioCerto.ativos[tipo][alteracoes.nome];
+    }
+    else{
+          //edição simples
+    usuarioCerto.ativos[tipo][alteracoes.nome] = alteracoes;
+    
+    }
+
+    //escreve de volta com as alterções realizadas
+    fs.writeFile(arquivoUsuarios, JSON.stringify(usuarios, null, 2), (erro)=>{
+      if (err){
+        res.send("Erro ao escrever no banco para editar ativo");
+        return;
+      }
+      res.send("Edição feita!");
+    });
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
