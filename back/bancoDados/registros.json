@@ -6,13 +6,32 @@
       "acoes": {
         "TESTE": {
           "nome": "TESTE",
-          "quantidade": 4,
-          "precoMedio": 3,
-          "precoAtual": 3
+          "quantidade": "233",
+          "precoMedio": "123",
+          "precoAtual": "123"
+        },
+        "TESTE2": {
+          "nome": "TESTE2",
+          "quantidade": "233",
+          "precoMedio": "33",
+          "precoAtual": "33"
+        },
+        "TESTE4": {
+          "nome": "TESTE4",
+          "quantidade": 1,
+          "precoMedio": 1,
+          "precoAtual": 1
         }
       },
       "cripto": {},
-      "fundos": {}
+      "fundos": {
+        "TESTE": {
+          "nome": "TESTE",
+          "quantidade": "133",
+          "precoMedio": "23",
+          "precoAtual": "23"
+        }
+      }
     }
   },
   {
