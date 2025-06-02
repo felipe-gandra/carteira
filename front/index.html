@@ -13,8 +13,7 @@
     <h1>Minha carteira de investimentos</h1>
     <div class="botoesHeader">
       <button onclick="mostrarModalAddAtivo()">Adicionar ativo</button>
-      <button>Remover ativo</button>
-      <button>Simular ativo</button>
+      <button>Fazer simulação de rendimento</button>
       <button class="iconeSaida" onclick="deslogar()">Sair  <img src="img/exit.png"></button>
     </div>
 
@@ -60,7 +59,7 @@
     <!-- Modal de Editar ativo já existente -->
     <div id="fundoModalEditar"  class="fundoModal">
       <div id="modalEditar" class="conteudoModal">
-        <h2>Editar ativo</h2>
+        <h2 id="tituloEditar"></h2>
         <form>
           <div>
             <label for="nomeAtivo">Novo valor médio de compra: </label>
@@ -87,10 +86,14 @@
       <div class="cardMaior">
         <div class="blocoTextoResumo">
           <h3>Estatísticas</h3>
-          <p id="totalInvestido"></p>
-          <p id="montante"></p>
-          <p id="valorizacao"></p>
-          <p id="principal"></p>
+          <ul>
+            <li id="totalInvestido"></li>
+            <li id="montante"></li>
+            <li id="valorizacao"></li>
+            <li id="lucro"></li>
+            <li id="principal"></li>
+          </ul>
+
         </div>
         <div class="blocoImagemResumo">
           <h3>Distribuição dos ativos</h3>

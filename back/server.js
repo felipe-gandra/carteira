@@ -66,8 +66,10 @@ app.post('/usuarios/addAtivo', (req, res) => {
       //se nao achou ninguem com o email. Nao deveria acontecer mas vai saber
 
     }
+    //atualiza os ativos do usuario
     usuarioCerto.ativos[tipo][codigoAtivo] = novoAtivo[codigoAtivo];
 
+    //escreve de volta no banco
     fs.writeFile(arquivoUsuarios, JSON.stringify(usuarios, null, 2), (erro) => {
       if (err){
         console.log("Erro ao escrever o novo ativo no banco de dados.")

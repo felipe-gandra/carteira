@@ -52,10 +52,10 @@ function renderizarAtivos(ativosAtuais){
     const valorCompra = (acoes[codigo].quantidade * acoes[codigo].precoMedio);
     const variacao = ((valorAtual/valorCompra - 1)*100).toFixed(2);
     var variacaoString = variacao
-    if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> " + variacao}
+    if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> +" + variacao}
     else if(variacao<0){variacaoString = "<img src='img/diminuindo.png' style='height:18px;margin-right:3px'> " + variacao }
 
-    li.innerHTML = "<p>"+ acoes[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ acoes[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+    li.innerHTML = "<p>"+ acoes[codigo].nome +":&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ acoes[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -70,10 +70,10 @@ function renderizarAtivos(ativosAtuais){
     const valorCompra = (criptos[codigo].quantidade * criptos[codigo].precoMedio);
     const variacao = ((valorAtual/valorCompra - 1)*100).toFixed(2);
     var variacaoString = variacao
-    if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> " + variacao}
+    if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> +" + variacao}
     else if(variacao<0){variacaoString = "<img src='img/diminuindo.png' style='height:18px;margin-right:3px'> " + variacao }
 
-    li.innerHTML = "<p>"+ criptos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ criptos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+    li.innerHTML = "<p>"+ criptos[codigo].nome +":&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ criptos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -88,10 +88,10 @@ function renderizarAtivos(ativosAtuais){
     const valorCompra  =(fundos[codigo].quantidade * fundos[codigo].precoMedio);
     const variacao = ((valorAtual/valorCompra - 1)*100).toFixed(2);
     var variacaoString = variacao
-    if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> " + variacao}
+    if (variacao > 0){variacaoString = "<img src='img/subindo.png' style='height:18px;margin-right:3px'> +" + variacao}
     else if(variacao<0){variacaoString = "<img src='img/diminuindo.png' style='height:18px;margin-right:3px'> " + variacao }
 
-    li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp;&nbsp;&nbsp&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+    li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp; R$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -141,7 +141,8 @@ function renderizaEstatisticas(ativosAtuais){
   document.getElementById("totalInvestido").innerText = "Total investido:  R$ " + totalInvestido.toFixed(2);
   document.getElementById("montante").innerText = "Montante atual:  R$ " + totalmontante.toFixed(2);
   document.getElementById("valorizacao").innerText = "Valorização:  " + valorizacao.toFixed(2) + "%"
-  document.getElementById("principal").innerText = "Principal ativo da carteira: " + ativoPrincipal;
+  document.getElementById("lucro").innerText = "Lucro/Prejuízo:  R$ " + (totalmontante - totalInvestido).toFixed(2);
+  document.getElementById("principal").innerText = "Tipo de ativo predominante: " + ativoPrincipal;
   
 }
 
@@ -156,7 +157,7 @@ function editarAtivo(codigo, ativos, tipo){
   // Ativa o modal
   document.getElementById("fundoModalEditar").style.display = 'block';
   document.getElementById("modalEditar").style.display = 'block';
-
+  document.getElementById("tituloEditar").innerText= "Editar ativo: " + codigo;
 
 }
 

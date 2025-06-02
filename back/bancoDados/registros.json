@@ -35,6 +35,12 @@
           "quantidade": 10,
           "precoMedio": 1000,
           "precoAtual": 4000
+        },
+        "ETH": {
+          "nome": "ETH",
+          "quantidade": "4",
+          "precoMedio": "10000",
+          "precoAtual": "10000"
         }
       },
       "fundos": {
