@@ -16,7 +16,7 @@ async function buscarPreco(codigo){
   const resposta = await fetch(endereco);
   const dados = await resposta.json();
   //console.log(dados);
-  return dados;
+  return dados.c;
 }
 
 async function acaoExiste(codigo) {
