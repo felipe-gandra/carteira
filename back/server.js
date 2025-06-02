@@ -86,6 +86,7 @@ app.post('/usuarios/addAtivo', (req, res) => {
 });
 
 
+//rota para editar/remover ativo
 app.post('/usuarios/editarAtivo', (req, res) => {
   const {email, alteracoes, tipo, remocao} = req.body;
   console.log(alteracoes);
