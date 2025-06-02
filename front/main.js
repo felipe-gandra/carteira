@@ -175,12 +175,17 @@ function editarAtivo(codigo, ativos, ctipo){
 }
 
 async function realizarEdicao(codigo, ctipo, remocao){
+  //pega os valores do formulario
   const novoValor = document.getElementById("novoValor").value;
   const novoUnidades = document.getElementById("novoValorUnidades").value;
 
   //faz uma validacao pra ver se o usuario realmente inseriu alguma coisa
-  if ((!novoValor || !novoUnidades) && !remocao){return;}
+  if ((!novoValor || !novoUnidades) && !remocao){
+    alert("Por favor, preencha todos os campos para editar.");
+    return;
+  }
 
+  //define o tipó de ativo que ta senod editado
   var tipo = null;
   if (ctipo == 0){tipo = "acoes";}
   else if (ctipo == 1){tipo = "cripto";}
@@ -188,9 +193,9 @@ async function realizarEdicao(codigo, ctipo, remocao){
 
   const alteracoes = {
     nome : codigo,
-    quantidade : novoUnidades,
-    precoMedio : novoValor,
-    precoAtual : novoValor
+    quantidade : parseFloat(novoUnidades),
+    precoMedio : parseFloat(novoValor),
+    precoAtual : parseFloat(novoValor)
   }
 
   const options = {
@@ -206,7 +211,33 @@ async function realizarEdicao(codigo, ctipo, remocao){
     })
   }
 
-  const resultado = await fetch("http://localhost:3000/usuarios/editarAtivo", options)
+  try {
+    const resultado = await fetch("http://localhost:3000/usuarios/editarAtivo", options);
+    
+    if (!resultado.ok) {
+      const errorText = await resultado.text();
+      console.error('Server error:', errorText);
+      alert("Erro no servidor: " + errorText);
+      return;
+    }
+    
+    const resposta = await resultado.text();
+    console.log('Success:', resposta);
+    
+    // fecha o modal
+    document.getElementById("fundoModalEditar").style.display = 'none';
+    document.getElementById("modalEditar").style.display = 'none';
+    
+    //limpa
+    document.getElementById("novoValor").value = '';
+    document.getElementById("novoValorUnidades").value = '';
+    
+    //att pagina
+    location.reload();
+    
+  } catch (error) {
+    alert("Erro de rede: " + error.message);
+  }
 }
 
 

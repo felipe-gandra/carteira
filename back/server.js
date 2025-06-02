@@ -54,62 +54,75 @@ app.post('/usuarios/addAtivo', (req, res) => {
   var usuarioCerto = null;
 
   fs.readFile(arquivoUsuarios, (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      return res.status(500).send("Erro ao ler arquivo");
+    }
+
     let usuarios = JSON.parse(data);
-    for (usuario of usuarios){
+    for (let usuario of usuarios){
       if (usuario.email == email){
         usuarioCerto = usuario;
+        break;
       }
     }
 
-    if (!usuario){
-      return res.send("Nao achou usuario (?)"); 
-      //se nao achou ninguem com o email. Nao deveria acontecer mas vai saber
-
+    if (!usuarioCerto){
+      return res.status(404).send("Nao achou usuario"); 
     }
+    
     //atualiza os ativos do usuario
     usuarioCerto.ativos[tipo][codigoAtivo] = novoAtivo[codigoAtivo];
 
     //escreve de volta no banco
     fs.writeFile(arquivoUsuarios, JSON.stringify(usuarios, null, 2), (erro) => {
-      if (err){
-        console.log("Erro ao escrever o novo ativo no banco de dados.")
+      if (erro){
+        console.error("Erro ao escrever o novo ativo no banco de dados:", erro);
+        return res.status(500).send("Erro ao salvar ativo");
       }
+      res.send("Funcionou");
     });
-    
   });
-  res.send("Funcionou");
-})
+});
 
 
 app.post('/usuarios/editarAtivo', (req, res) => {
   const {email, alteracoes, tipo, remocao} = req.body;
   console.log(alteracoes);
+  
   fs.readFile(arquivoUsuarios, (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      return res.send("Erro ao ler arquivo");
+    }
+
     let usuarios = JSON.parse(data);
     var usuarioCerto = null;
 
-    for (usuario of usuarios){
+    for (let usuario of usuarios){
       if (usuario.email == email){
         usuarioCerto = usuario;
+        break; //para a busca
       }
     }
-    if (!usuario){res.send("Erro ao achar ususario para editar ativo"); return;} //nao deveria acontecer
+    
+    if (!usuarioCerto){ //nao deveria acontecer
+      return res.send("Erro ao achar usuario para editar ativo");
+    }
 
     //remoção
     if (remocao){
       delete usuarioCerto.ativos[tipo][alteracoes.nome];
     }
     else{
-          //edição simples
-    usuarioCerto.ativos[tipo][alteracoes.nome] = alteracoes;
-    
+      //edição simples
+      usuarioCerto.ativos[tipo][alteracoes.nome] = alteracoes;
     }
 
     //escreve de volta com as alterções realizadas
     fs.writeFile(arquivoUsuarios, JSON.stringify(usuarios, null, 2), (erro)=>{
-      if (err){
-        res.send("Erro ao escrever no banco para editar ativo");
-        return;
+      if (erro){
+        return res.send("Erro ao escrever no banco para editar ativo");
       }
       res.send("Edição feita!");
     });

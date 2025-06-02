@@ -3,7 +3,14 @@
     "email": "felipegmoreira@usp.br",
     "senha": "1234",
     "ativos": {
-      "acoes": {},
+      "acoes": {
+        "TESTE": {
+          "nome": "TESTE",
+          "quantidade": 4,
+          "precoMedio": 3,
+          "precoAtual": 3
+        }
+      },
       "cripto": {},
       "fundos": {}
     }
