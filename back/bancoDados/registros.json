@@ -28,7 +28,7 @@
           "nome": "BTC",
           "quantidade": "2",
           "precoMedio": "2000",
-          "precoAtual": 105915.97
+          "precoAtual": 106365.21
         }
       },
       "fundos": {}
@@ -38,21 +38,12 @@
     "email": "felipe@gmail.com",
     "senha": "1234",
     "ativos": {
-      "acoes": {},
-      "cripto": {},
-      "fundos": {}
-    }
-  },
-  {
-    "email": "julias.ssoares07@gmail.com",
-    "senha": "Sara",
-    "ativos": {
       "acoes": {
-        "PETR4": {
-          "nome": "PETR4",
-          "precoMedio": 1000,
-          "precoAtual": 950,
-          "quantidade": 2
+        "PBR": {
+          "nome": "PBR",
+          "quantidade": "100",
+          "precoMedio": "30",
+          "precoAtual": 11.61
         }
       },
       "cripto": {},

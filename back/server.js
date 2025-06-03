@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const {acaoExiste, buscarPreco} = require("./api")
+const {ativoExiste, buscarPreco} = require("./api")
 const app = express();
 const PORT = 3000;
 
@@ -165,4 +165,20 @@ app.post('/usuarios/atualizarAtivos', (req, res) =>{
       })
     })
   })
+});
+
+app.post('/verificarAtivo', (req, res) => {
+  const { codigo } = req.body; // Recebe o código do ativo do body
+
+  if (!codigo) {
+    return res.status(400).send("Código do ativo não fornecido");
+  }
+
+  ativoExiste(codigo).then(resposta => {
+    res.send(resposta.toString()); 
+    console.log("Verificação do ativo:", codigo, "Resultado:", resposta);
+  }).catch(erro => {
+    console.error("Erro ao verificar ativo:", erro);
+    res.status(500).send("false");
+  });
 });

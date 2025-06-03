@@ -40,13 +40,13 @@ async function buscarPreco(codigo){
   return dados.c;
 }
 
-async function acaoExiste(codigo) {
+async function ativoExiste(codigo) {
   try {
     const resposta = await buscarPreco(codigo);
     console.log(resposta);
 
-    if (resposta.c != 0){return true}
-    else{return false;}
+    if (resposta != 0){return true}
+    return false;
   } catch (erro) {
     console.error(erro);
     return false;
@@ -54,5 +54,5 @@ async function acaoExiste(codigo) {
 }
 
 
-module.exports = {buscarPreco, acaoExiste};
+module.exports = {buscarPreco, ativoExiste};
 

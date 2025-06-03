@@ -222,7 +222,6 @@ async function realizarEdicao(codigo, ctipo, remocao){
     }
     
     const resposta = await resultado.text();
-    console.log('Success:', resposta);
     
     // fecha o modal
     document.getElementById("fundoModalEditar").style.display = 'none';
@@ -289,10 +288,19 @@ async function adicionarAtivo(event){
   const valorCompra = document.getElementById("valorCompra").value;
   const unidadesCompradas = document.getElementById("unidadesCompradas").value;
 
+  const existe = await ativoExiste(codigo); //ve se a ação existe na bolsa
+  if (!existe){
+    alert("Ativo não encontrado na bolsa NASDAQ");
+    return;
+  }
+
+
   //limpa os campos do forms depois de enviado
   limpaFormulario();
 
-  if (!ativoExiste(codigo) || valorCompra <= 0 || unidadesCompradas <= 0 || !tipo){
+  
+
+  if (valorCompra <= 0 || unidadesCompradas <= 0 || !tipo){
     alert("Dados inválidos!");
     return;
   }
@@ -333,8 +341,33 @@ function limpaFormulario(){
   document.getElementById("unidadesCompradas").value = '';
 }
 
-function ativoExiste(codigo){
-  return true;
+async function ativoExiste(codigo) {
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        codigo: codigo
+      })
+    };
+
+    const resposta = await fetch("http://localhost:3000/verificarAtivo", options);
+    const resultado = await resposta.text();
+
+    console.log("Resultado: " + resultado);
+  
+    if (resultado === "false" || !resultado) {
+      return false;
+    } else {
+      return true;
+    }
+  } catch (erro) {
+    console.error("Erro ao verificar ativo:", erro);
+    alert("Erro de rede ao verificar ativo: " + erro.message);
+    return false;
+  }
 }
 
 async function atualizaAtivos(){
@@ -350,9 +383,6 @@ async function atualizaAtivos(){
   //coloquei para somente atualizar do usuario logado. ISso deve ajudar no processamento e evita 
   // sobrecarregar a api, que já é limitada por ser gratuita
   const resultado = await fetch("http://localhost:3000/usuarios/atualizarAtivos", options)
-
-  
-
 }
 
 async function main(){
