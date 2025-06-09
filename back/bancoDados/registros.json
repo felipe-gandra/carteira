@@ -8,19 +8,25 @@
           "nome": "AAPL",
           "quantidade": "233",
           "precoMedio": "123",
-          "precoAtual": 201.7
+          "precoAtual": 201.45
         },
         "NVDA": {
           "nome": "NVDA",
           "quantidade": "233",
           "precoMedio": "33",
-          "precoAtual": 137.38
+          "precoAtual": 142.63
         },
         "INTC": {
           "nome": "INTC",
           "quantidade": 3,
           "precoMedio": 2,
-          "precoAtual": 19.74
+          "precoAtual": 20.48
+        },
+        "MSFT": {
+          "nome": "MSFT",
+          "quantidade": "1",
+          "precoMedio": "400",
+          "precoAtual": 472.75
         }
       },
       "cripto": {
@@ -28,7 +34,19 @@
           "nome": "BTC",
           "quantidade": "2",
           "precoMedio": "2000",
-          "precoAtual": 106365.21
+          "precoAtual": 109981.15
+        },
+        "ETH": {
+          "nome": "ETH",
+          "quantidade": "1",
+          "precoMedio": "2600",
+          "precoAtual": 2647
+        },
+        "SOL": {
+          "nome": "SOL",
+          "quantidade": "5",
+          "precoMedio": "3000",
+          "precoAtual": 159.7
         }
       },
       "fundos": {}
@@ -47,6 +65,29 @@
         }
       },
       "cripto": {},
+      "fundos": {}
+    }
+  },
+  {
+    "email": "julia@gmail.com",
+    "senha": "jujuba",
+    "ativos": {
+      "acoes": {
+        "AAPL": {
+          "nome": "AAPL",
+          "quantidade": "4",
+          "precoMedio": "100",
+          "precoAtual": 203.27
+        }
+      },
+      "cripto": {
+        "BTC": {
+          "nome": "BTC",
+          "quantidade": 1,
+          "precoMedio": 100000,
+          "precoAtual": 105748.66
+        }
+      },
       "fundos": {}
     }
   }

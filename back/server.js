@@ -182,3 +182,53 @@ app.post('/verificarAtivo', (req, res) => {
     res.status(500).send("false");
   });
 });
+
+
+//rota para infoAdicional do ativo
+app.post('/infoAdicional', (req, res) => {
+  const { codigo, tipo, email } = req.body;
+
+  console.log("Recebido:", { codigo, tipo, email }); // Debug
+
+  if (!codigo || tipo === undefined || !email) {
+    return res.status(400).send("Dados incompletos");
+  }
+
+  fs.readFile(arquivoUsuarios, (err, data) => {
+    if (err) {
+      console.error('Error reading file:', err);
+      return res.status(500).send("Erro ao ler arquivo");
+    }
+
+    let usuarios = JSON.parse(data);
+    let usuarioEncontrado = usuarios.find(u => u.email === email);
+    
+    if (!usuarioEncontrado) {
+      console.log("Usuário não encontrado:", email); // Debug
+      return res.status(404).send("Usuário não encontrado");
+    }
+
+    let tipoAtivo;
+    if (tipo === 0) tipoAtivo = 'acoes';
+    else if (tipo === 1) tipoAtivo = 'cripto';
+    else tipoAtivo = 'fundos';
+    
+    console.log("Procurando ativo:", codigo, "do tipo:", tipoAtivo); // Debug
+    console.log("Ativos disponíveis:", Object.keys(usuarioEncontrado.ativos[tipoAtivo])); // Debug
+    
+    const ativo = usuarioEncontrado.ativos[tipoAtivo][codigo];
+    
+    if (!ativo) {
+      console.log("Ativo não encontrado:", codigo); // Debug
+      return res.status(404).send("Ativo não encontrado");
+    }
+
+    console.log("Ativo encontrado:", ativo); // Debug
+
+    res.json({
+      precoAtual: ativo.precoAtual,
+      precoMedio: ativo.precoMedio,
+      quantidade: ativo.quantidade
+    });
+  });
+});

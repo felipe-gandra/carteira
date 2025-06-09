@@ -57,6 +57,11 @@ function renderizarAtivos(ativosAtuais){
 
     li.innerHTML = "<p>"+ acoes[codigo].nome +":&nbsp; US$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ acoes[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
+    //adiciona listener no paragrago para chamar a função infoAdicional
+    li.querySelector("p").addEventListener("click", () => {
+      infoAdicional(codigo, 0);
+    });
+
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
       editarAtivo(codigo, acoes, 0);
@@ -74,6 +79,11 @@ function renderizarAtivos(ativosAtuais){
     else if(variacao<0){variacaoString = "<img src='img/diminuindo.png' style='height:18px;margin-right:3px'> " + variacao }
 
     li.innerHTML = "<p>"+ criptos[codigo].nome +":&nbsp; US$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ criptos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
+
+        //adiciona listener no paragrago para chamar a função infoAdicional
+    li.querySelector("p").addEventListener("click", () => {
+      infoAdicional(codigo, 1);
+    });
 
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
@@ -93,6 +103,11 @@ function renderizarAtivos(ativosAtuais){
 
     li.innerHTML = "<p>"+ fundos[codigo].nome +":&nbsp; US$  " + valorAtual.toFixed(2) +"&nbsp (" + variacaoString + " %)</p><button class='botaoEditar' id='"+ fundos[codigo].nome +"'><img src='img/iconeEditar.svg' alt='Editar'></button></li>"
 
+    //adiciona listener no paragrago para chamar a função infoAdicional
+    li.querySelector("p").addEventListener("click", () => {
+      infoAdicional(codigo, 2);
+    });
+    
     const botao = li.querySelector(".botaoEditar");
     botao.addEventListener("click", () => {
       editarAtivo(codigo, fundos, 2);
@@ -102,6 +117,53 @@ function renderizarAtivos(ativosAtuais){
   }
 
   renderizaEstatisticas(ativosAtuais);
+}
+
+async function infoAdicional(codigo, tipo){
+  //faz uma requisição para pegar as informações adicionais do ativo
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      codigo: codigo,
+      tipo: tipo,
+      email: localStorage.getItem("usuarioEmail") // Adiciona o email do usuário
+    })
+  };
+  try {
+    const resposta = await fetch("http://localhost:3000/infoAdicional", options);
+    
+    // Verifica se a resposta foi bem-sucedida
+    if (!resposta.ok) {
+      const errorText = await resposta.text();
+      console.error("Erro do servidor:", errorText);
+      alert("Erro ao buscar informações do ativo: " + errorText);
+      return;
+    }
+    
+    const resultado = await resposta.json();
+    
+    console.log("Resultado:", resultado); // Para debug
+    
+    // Verifica se o resultado tem as propriedades esperadas
+    if (!resultado.precoAtual || !resultado.precoMedio || !resultado.quantidade) {
+      console.error("Dados incompletos:", resultado);
+      alert("Dados do ativo incompletos");
+      return;
+    }
+    
+    document.getElementById("infoAdicional").innerHTML = `
+      <h3>Informações adicionais sobre ${codigo}</h3>
+      <p>Preço atual no mercado: US$ ${(resultado.precoAtual)}</p>
+      <p>Preço médio de compra: US$ ${(resultado.precoMedio)}</p>
+      <p>Quantidade de ativos: ${resultado.quantidade}</p>`;
+      
+  } catch (error) {
+    console.error("Erro:", error);
+    alert("Erro ao buscar informações do ativo");
+  }
 }
 
 function renderizaEstatisticas(ativosAtuais){
