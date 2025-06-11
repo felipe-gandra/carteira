@@ -90,5 +90,21 @@
       },
       "fundos": {}
     }
+  },
+  {
+    "email": "teste@gmail.com",
+    "senha": "1234",
+    "ativos": {
+      "acoes": {
+        "AAPL": {
+          "nome": "AAPL",
+          "quantidade": "90",
+          "precoMedio": "100",
+          "precoAtual": 199.37
+        }
+      },
+      "cripto": {},
+      "fundos": {}
+    }
   }
 ]

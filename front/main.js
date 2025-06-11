@@ -196,18 +196,19 @@ function renderizaEstatisticas(ativosAtuais){
 
   const totalInvestido = investido[0] + investido[1] + investido[2];
   const totalmontante = montante[0] + montante[1] + montante[2];
-  const valorizacao = ((totalmontante/totalInvestido) - 1)*100;
+  var valorizacao = ((totalmontante/totalInvestido) - 1)*100;
   var ativoPrincipal = null;
   if (montante[0] >= montante[1] && montante[0] >= montante[2]){ativoPrincipal = "Ações";}
   else if (montante[1] >= montante[2]){ativoPrincipal="Criptomoedas";}
   else{ativoPrincipal = "Fundos de investimento";}
+  if (isNaN(valorizacao)){valorizacao = 0.00;}
 
   document.getElementById("totalInvestido").innerText = "Total investido:  US$ " + totalInvestido.toFixed(2);
   document.getElementById("montante").innerText = "Montante atual:  US$ " + totalmontante.toFixed(2);
   document.getElementById("valorizacao").innerText = "Valorização:  " + valorizacao.toFixed(2) + "%"
   document.getElementById("lucro").innerText = "Lucro/Prejuízo:  US$ " + (totalmontante - totalInvestido).toFixed(2);
   document.getElementById("principal").innerText = "Tipo de ativo predominante: " + ativoPrincipal;
-  
+
   gerarGraficoResumo(ativosAtuais, 'graficoResumo');
 }
 
