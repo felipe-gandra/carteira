@@ -299,6 +299,67 @@ form > div {
   }
 }
 
+.cardAdicional {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+.cardAdicional #infoAdicional {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardAdicional canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.cardAdicional h3 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Ajustes para telas menores */
+@media screen and (max-width: 1000px) {
+  .cardAdicional {
+    width: 90%;
+    min-height: 400px;
+    padding: 15px;
+  }
+  
+  .cardAdicional h3 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cardAdicional {
+    min-height: 350px;
+    padding: 10px;
+  }
+  
+  .cardAdicional canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
 
 @media screen and (max-width: 1000px) {
   h1{
@@ -327,6 +388,7 @@ form > div {
     flex-direction: space-between;
     align-items: center;
     white-space: nowrap;
+    font-size: 12px;
   }
 
   .cardMaior{

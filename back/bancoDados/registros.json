@@ -8,25 +8,25 @@
           "nome": "AAPL",
           "quantidade": "233",
           "precoMedio": "123",
-          "precoAtual": 201.45
+          "precoAtual": 199.56
         },
         "NVDA": {
           "nome": "NVDA",
           "quantidade": "233",
           "precoMedio": "33",
-          "precoAtual": 142.63
+          "precoAtual": 142.87
         },
         "INTC": {
           "nome": "INTC",
           "quantidade": 3,
           "precoMedio": 2,
-          "precoAtual": 20.48
+          "precoAtual": 20.49
         },
         "MSFT": {
           "nome": "MSFT",
           "quantidade": "1",
           "precoMedio": "400",
-          "precoAtual": 472.75
+          "precoAtual": 472.805
         }
       },
       "cripto": {
@@ -34,19 +34,19 @@
           "nome": "BTC",
           "quantidade": "2",
           "precoMedio": "2000",
-          "precoAtual": 109981.15
+          "precoAtual": 108823.93
         },
         "ETH": {
           "nome": "ETH",
           "quantidade": "1",
           "precoMedio": "2600",
-          "precoAtual": 2647
+          "precoAtual": 2825.14
         },
         "SOL": {
           "nome": "SOL",
           "quantidade": "5",
           "precoMedio": "3000",
-          "precoAtual": 159.7
+          "precoAtual": 163.82
         }
       },
       "fundos": {}
@@ -61,7 +61,7 @@
           "nome": "PBR",
           "quantidade": "100",
           "precoMedio": "30",
-          "precoAtual": 11.61
+          "precoAtual": 11.985
         }
       },
       "cripto": {},
