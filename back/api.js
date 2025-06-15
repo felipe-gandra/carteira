@@ -21,7 +21,7 @@ const criptoMapa = {
 
 const fs = require("fs");
 const link = 'https://finnhub.io/api/v1';
-const config = JSON.parse(fs.readFileSync("front/config.json", "utf-8"));
+const config = JSON.parse(fs.readFileSync("../front/config.json", "utf-8"));
 
 
 async function buscarPreco(codigo){

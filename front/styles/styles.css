@@ -43,10 +43,13 @@ main{
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 480px;
-  height: 300px;
+  height: auto;
+  min-height: 300px;
+  max-height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 
   ul{
     overflow-y: auto;
@@ -54,6 +57,17 @@ main{
     max-height: 150px;
     max-width: 380px;
   }
+}
+
+/* Card específico para gráficos com scroll */
+.card.card-grafico {
+  overflow-y: auto;
+}
+
+/* Estilo específico para a área de informações adicionais */
+.card-grafico #infoAdicional {
+  max-height: 360px;
+  overflow-y: auto;
 }
 
 .conjuntoCards{
@@ -292,11 +306,21 @@ form > div {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
   img{
     justify-content: center;
     margin: 0 auto;
     max-width: 180px;
   }
+}
+
+#infoAdicional canvas {
+  max-width: 100%;
+  max-height: 380px;
+  height: auto;
+  margin: 0 auto;
 }
 
 .cardAdicional {
@@ -312,7 +336,7 @@ form > div {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .cardAdicional #infoAdicional {
