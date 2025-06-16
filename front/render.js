@@ -10,6 +10,14 @@ function renderizarAtivos(ativosAtuais){
   renderizarListaFundos(ativosAtuais.fundos);
 }
 
+
+
+/*
+
+As funções abaixo basicamente renderizam no html os ativos que estão no banco de dados.
+
+*/
+
 function renderizarListaAcoes(acoes) {
   const listaAcoes = document.getElementById("listaAcoes");
   listaAcoes.innerHTML = ''; // Limpa a lista
@@ -77,6 +85,7 @@ function renderizarListaCriptos(criptos) {
     listaCriptos.appendChild(li);
   }
 }
+
 
 function renderizarListaFundos(fundos) {
   const listaFundos = document.getElementById("listaFundos");

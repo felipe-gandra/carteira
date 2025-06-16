@@ -3,8 +3,8 @@
 Sistema web para gerenciamento de carteira de investimentos pessoal.
 
 ## Tecnologias Utilizadas
-
-- **Frontend:** HTML5, CSS3, JavaScript (ES6+)
+express
+- **Frontend:** HTML5, CSS3, JavaScript
 - **Backend:** Node.js, Express.js
 - **Banco de Dados:** JSON (arquivo local)
 - **API Externa:** Finnhub API (cotações de ativos)

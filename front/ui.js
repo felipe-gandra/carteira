@@ -4,13 +4,9 @@
 var ativoEmEdicao = null;
 var tipoEmEdicao = null;
 
-/**
- * Remove o email do usuário logado do localStorage e direciona pro login
- */
-function deslogar(){
-  localStorage.removeItem("usuarioEmail");
-  window.location.href = "login.html";
-}
+/*
+Funções relacioandas aos modais
+*/
 
 function adicionarListenerModal(){
   document.getElementById("fundoModal").addEventListener("click", function(event){

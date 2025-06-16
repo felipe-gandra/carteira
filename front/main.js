@@ -1,4 +1,13 @@
-// Arquivo principal - Inicialização e orquestração das funcionalidades
+// Arquivo principal
+// Inicializa as coisas e chama as funções principais
+
+/**
+ * Remove o email do usuário logado do localStorage e direciona pro login
+ */
+function deslogar(){
+  localStorage.removeItem("usuarioEmail");
+  window.location.href = "login.html";
+}
 
 async function main(){
   adicionarListenerModal();
